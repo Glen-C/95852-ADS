@@ -69,7 +69,7 @@ p28
 I5
 sS'penalty'
 p29
-S'elasticnet'
+S'l1'
 p30
 sS'random_state'
 p31
@@ -120,7 +120,7 @@ I-1
 I0
 tp49
 bI00
-S'd\x02b\x04\x06c_@\xd1\xb3\x15\xc9`\x0cv\xc0m\xe3\x0e\xb8\xcc\x9c\\@\xef1\xa1pO\x04f\xc0'
+S'O\xe1R\x052@\x86@A:=\xe4f\xd7\x93\xc0S&\xf5\xe5\x03$\x82@\x17,.\x99\xaf\xdc\x86\xc0'
 p50
 tp51
 bsS'alpha'
@@ -140,7 +140,7 @@ Rp56
 tp57
 g47
 I00
-S'L\x92\x87bh][@'
+S'\xc6\xc8|\xb4\xbf\xc4v@'
 p58
 tp59
 bsS'_expanded_class_weight'
@@ -165,7 +165,7 @@ p67
 I00
 sS'loss'
 p68
-S'log'
+S'modified_huber'
 p69
 sS'eta0'
 p70
@@ -182,7 +182,7 @@ F0.5
 sS'loss_function_'
 p74
 csklearn.linear_model.sgd_fast
-Log
+ModifiedHuber
 p75
 (tRp76
 sb.
