@@ -1,0 +1,56 @@
+
+
+print("This line will be printed.")
+
+import pandas as pd
+import numpy as np
+import scipy.stats as st
+import scipy.special as sp
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv('C:/Uni_Work/BIDA/2017_08_95-852 Applied Data Science/Project/DataSource/Mortality_cdc/CDC_Mortalities_Data_2011_2015.csv', parse_dates=True)
+
+print('shape of the data frame'+str(df.shape))
+print(df.groupby(['manner_of_death']).size())
+
+df.describe()
+
+
+df.loc[df.manner_of_death.ne('Natural'), 'manner_of_death'] = 'Other'
+
+
+print(df.groupby(['manner_of_death']).size())
+
+# Null hypothesis (H0) : p <= 0.5 where p is the probability of natural death
+# Alternate hypothesis (H1) : p > 0.5
+# Significance level alpha = 0.05
+
+oth = df[(df['manner_of_death'] == "Other")].manner_of_death.count()  # number of other deaths
+nat = df[(df['manner_of_death'] == "Natural")].manner_of_death.count()  # number of natural deaths
+
+q = 0.5  # null-hypothesis = even probability
+
+xb = float(nat)/(nat+oth)
+z = (xb - q) * np.sqrt((nat+oth) / (q*(1-q)))
+
+print("Z score of " + str(z))
+
+pval = 2 * (1 - st.norm.cdf(z))
+
+print("P value of " + str(pval))
+
+posterior = lambda n, h, q: ((nat+oth)+1) * st.binom((nat+oth), q).pmf(h)
+
+q = np.linspace(0., 1., 1000)
+d = posterior((nat+oth), nat, q)
+
+plt.plot(q, d, '-k')
+plt.xlabel('q parameter')
+plt.ylabel('Posterior distribution')
+plt.ylim(0, d.max()+1)
+
+
+
+
+
